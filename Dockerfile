@@ -35,6 +35,6 @@ RUN usermod -u 1000 www-data
 
 WORKDIR /var/www
 
-CMD ["php5-fpm", "-F"]
+CMD ["php5-fpm"]
 
 EXPOSE 9000
