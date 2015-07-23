@@ -26,8 +26,6 @@ ADD php.ini /etc/php5/cli/conf.d/
 
 RUN sed -i -e "s/;daemonize\s*=\s*yes/daemonize = no/g" /etc/php5/fpm/php-fpm.conf
 
-RUN usermod -u 1000 www-data
-
 WORKDIR /var/www
 
 EXPOSE 9000
