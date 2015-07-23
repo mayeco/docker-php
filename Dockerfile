@@ -20,7 +20,8 @@ RUN apt-get update \
         php5-mongo \
         php5-readline \
         php5-memcached \
-    && rm -rf /var/lib/apt/lists/*
+    && apt-get clean \
+    && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 RUN rm /etc/php5/fpm/pool.d/*
 
@@ -35,6 +36,6 @@ RUN usermod -u 1000 www-data
 
 WORKDIR /var/www
 
-CMD ["php5-fpm"]
-
 EXPOSE 9000
+
+CMD ["php5-fpm"]
