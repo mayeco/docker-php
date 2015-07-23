@@ -1,6 +1,4 @@
-FROM debian:8.1
-
-ENV DEBIAN_FRONTEND noninteractive
+FROM mayeco/docker-base
 
 RUN apt-get update \
     && apt-get install -y \
