@@ -1,7 +1,7 @@
 FROM mayeco/docker-base
 
 RUN apt-get update \
-    && apt-get install -y \
+    && apt-get install -y --no-install-recommends \
         php5-fpm \
         php5-apcu \ 
         php5-curl \
