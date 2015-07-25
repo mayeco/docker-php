@@ -21,8 +21,11 @@ RUN rm /etc/php5/fpm/pool.d/*
 
 ADD php.pool.conf /etc/php5/fpm/pool.d/
 
-ADD php.ini /etc/php5/fpm/conf.d/
-ADD php.ini /etc/php5/cli/conf.d/
+ENV PHP_INI_ENV **None**
+
+ADD ./run.sh /run.sh
+
+RUN chmod +x /run.sh
 
 RUN sed -i -e "s/;daemonize\s*=\s*yes/daemonize = no/g" /etc/php5/fpm/php-fpm.conf
 
@@ -30,4 +33,4 @@ WORKDIR /var/www
 
 EXPOSE 9000
 
-CMD ["php5-fpm"]
+CMD ["/run.sh"]
