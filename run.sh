@@ -6,7 +6,7 @@ if [ "${PHP_INI_ENV}" != "**None**" ]; then
 
     echo "" >> /etc/php5/fpm/php.ini
     echo ";PHP_INI_ENV settings" >> /etc/php5/fpm/php.ini
-    arr=$(echo ${PHP_INI_ENV} | tr "/" "\n")
+    arr=$(echo ${PHP_INI_ENV} | tr ";" "\n")
     for x in $arr
     do
         echo "=> added php.ini line: $x"
