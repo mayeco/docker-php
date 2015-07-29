@@ -14,8 +14,8 @@ if [ "${PHP_INI_ENV}" != "**None**" ]; then
     done
     echo "" > /etc/php5/mods-available/zzz-php.ini
     
-    ln -s /etc/php5/mods-available/zzz-php.ini /etc/php5/cli/conf.d/zzz-php.ini
-    ln -s /etc/php5/mods-available/zzz-php.ini /etc/php5/fpm/conf.d/zzz-php.ini
+    ln -s -f /etc/php5/mods-available/zzz-php.ini /etc/php5/cli/conf.d/zzz-php.ini
+    ln -s -f /etc/php5/mods-available/zzz-php.ini /etc/php5/fpm/conf.d/zzz-php.ini
 
 fi
 
