@@ -2,21 +2,31 @@
 
 if [ "${PHP_INI_ENV}" != "**None**" ]; then
 
-    echo "=> php.ini settings"
+    cd /etc/php5/mods-available/
 
-    echo "" > /etc/php5/mods-available/zzz-php.ini
-    echo ";PHP_INI_ENV settings" >> /etc/php5/mods-available/zzz-php.ini
+    echo "=> php.ini settings"
+    rm -f zzz-php.ini
+    
+    echo "" > zzz-php.ini
+    echo ";PHP_INI_ENV settings" >> zzz-php.ini
+
     arr=$(echo ${PHP_INI_ENV} | tr ";" "\n")
     for x in $arr
     do
         echo "=> added php.ini line: $x"
-        echo "$x" >> /etc/php5/mods-available/zzz-php.ini
+        echo "$x" >> zzz-php.ini
     done
-    echo "" > /etc/php5/mods-available/zzz-php.ini
+
+    echo "" >> zzz-php.ini
     
-    ln -s -f /etc/php5/mods-available/zzz-php.ini /etc/php5/cli/conf.d/zzz-php.ini
-    ln -s -f /etc/php5/mods-available/zzz-php.ini /etc/php5/fpm/conf.d/zzz-php.ini
+    cd /etc/php5/cli/conf.d/
+    ln -s -f ../../mods-available/zzz-php.ini zzz-php.ini
+    
+    cd /etc/php5/fpm/conf.d/
+    ln -s -f ../../mods-available/zzz-php.ini zzz-php.ini
 
 fi
+
+cd /var/www/
 
 exec php5-fpm
